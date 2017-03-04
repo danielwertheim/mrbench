@@ -266,7 +266,7 @@ namespace MrBench.TaskResultExtraction
             = new ConcurrentDictionary<Type, DynamicGetter>();
 
         public DynamicGetter GetFor(Type type) => _state.GetOrAdd(
-            type, t => DynamicGetterFactory.CreateUsingIl(t.GetProperty("Result")));
+            type, t => DynamicGetterFactory.CreateUsingCompiledLambda(t.GetProperty("Result")));
     }
 
     public delegate object DynamicGetter(object obj);
